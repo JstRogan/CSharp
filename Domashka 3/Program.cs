@@ -1,258 +1,222 @@
 using System;
+using System.Collections.Generic;
 
-namespace AutoParkManager
+namespace SimpleAutoPark
 {
-    enum FuelType
-    {
-        Petrol,
-        Diesel,
-        Electric,
-        Hybrid
-    }
-
-    enum BodyType
-    {
-        Sedan,
-        Hatchback,
-        SUV,
-        Minivan,
-        Bus
-    }
-
     class Transport
     {
-        public string Model { get; set; }
-        public int Year { get; set; }
-        public FuelType Fuel { get; set; }
-        public BodyType Body { get; set; }
+        public string Model;
+        public int Year;
+        public string Fuel;
+        public string Body;
 
-        public virtual void PrintInfo()
+        public void ShowInfo()
         {
-            Console.WriteLine($"Модель: {Model}, Год: {Year}, Топливо: {Fuel}, Кузов: {Body}");
+            Console.WriteLine("Модель: " + Model);
+            Console.WriteLine("Год выпуска: " + Year);
+            Console.WriteLine("Тип топлива: " + Fuel);
+            Console.WriteLine("Тип кузова: " + Body);
         }
     }
 
     class Car : Transport
     {
-        public int NumberOfDoors { get; set; }
+        public int Doors;
 
-        public override void PrintInfo()
+        public new void ShowInfo()
         {
-            base.PrintInfo();
-            Console.WriteLine($"Количество дверей: {NumberOfDoors}");
+            base.ShowInfo();
+            Console.WriteLine("Количество дверей: " + Doors);
         }
     }
 
     class Bus : Transport
     {
-        public int PassengerSeats { get; set; }
+        public int Seats;
 
-        public override void PrintInfo()
+        public void ShowInfo()
         {
-            base.PrintInfo();
-            Console.WriteLine($"Пассажирских мест: {PassengerSeats}");
+            base.ShowInfo();
+            Console.WriteLine("Пассажирских мест: " + Seats);
         }
     }
 
-    class Program
+    class AutoParkManager
     {
-        static Transport[] park = new Transport[100];
-        static int count = 0;
+        List<Transport> park = new List<Transport>();
 
-        static void Main(string[] args)
+        public void Run()
         {
-            bool exit = false;
-            while (!exit)
+            bool work = true;
+
+            while (work)
             {
-                Console.WriteLine("\nМенеджер автопарка:");
-                Console.WriteLine("1. Добавить транспорт");
-                Console.WriteLine("2. Показать автопарк");
-                Console.WriteLine("3. Редактировать транспорт");
-                Console.WriteLine("4. Удалить транспорт");
-                Console.WriteLine("0. Выход");
+                Console.WriteLine();
+                Console.WriteLine("Меню:");
+                Console.WriteLine("1 - Добавить транспорт");
+                Console.WriteLine("2 - Показать все");
+                Console.WriteLine("3 - Редактировать транспорт");
+                Console.WriteLine("4 - Удалить транспорт");
+                Console.WriteLine("0 - Выход");
                 Console.Write("Выбор: ");
 
-                string input = Console.ReadLine();
-                switch (input)
+                string answer = Console.ReadLine();
+
+                if (answer == "1")
                 {
-                    case "1":
-                        AddTransport();
-                        break;
-                    case "2":
-                        ShowPark();
-                        break;
-                    case "3":
-                        EditTransport();
-                        break;
-                    case "4":
-                        DeleteTransport();
-                        break;
-                    case "0":
-                        exit = true;
-                        break;
-                    default:
-                        Console.WriteLine("Неверный выбор.");
-                        break;
+                    AddTransport();
+                }
+                else if (answer == "2")
+                {
+                    ShowAll();
+                }
+                else if (answer == "3")
+                {
+                    EditTransport();
+                }
+                else if (answer == "4")
+                {
+                    DeleteTransport();
+                }
+                else if (answer == "0")
+                {
+                    work = false;
+                }
+                else
+                {
+                    Console.WriteLine("Неверный выбор");
                 }
             }
         }
 
-        static void AddTransport()
+        void AddTransport()
         {
-            Console.Write("Введите тип (car/bus): ");
-            string type = Console.ReadLine().ToLower();
+            Console.Write("Введите тип транспорта (car или bus): ");
+            string type = Console.ReadLine();
 
-            Console.Write("Модель: ");
+            Console.Write("Введите модель: ");
             string model = Console.ReadLine();
 
-            Console.Write("Год выпуска: ");
-            int year = int.Parse(Console.ReadLine());
+            Console.Write("Введите год выпуска: ");
+            int year = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Топливо (Petrol, Diesel, Electric, Hybrid): ");
-            FuelType fuel = Enum.Parse<FuelType>(Console.ReadLine());
+            Console.Write("Введите тип топлива: ");
+            string fuel = Console.ReadLine();
 
-            Console.Write("Кузов (Sedan, Hatchback, SUV, Minivan, Bus): ");
-            BodyType body = Enum.Parse<BodyType>(Console.ReadLine());
+            Console.Write("Введите тип кузова: ");
+            string body = Console.ReadLine();
 
             if (type == "car")
             {
-                Console.Write("Количество дверей: ");
-                int doors = int.Parse(Console.ReadLine());
+                Console.Write("Сколько дверей: ");
+                int doors = Convert.ToInt32(Console.ReadLine());
 
-                Car car = new Car
-                {
-                    Model = model,
-                    Year = year,
-                    Fuel = fuel,
-                    Body = body,
-                    NumberOfDoors = doors
-                };
-                park[count++] = car;
+                Car car = new Car();
+                car.Model = model;
+                car.Year = year;
+                car.Fuel = fuel;
+                car.Body = body;
+                car.Doors = doors;
+
+                park.Add(car);
             }
             else if (type == "bus")
             {
-                Console.Write("Пассажирских мест: ");
-                int seats = int.Parse(Console.ReadLine());
+                Console.Write("Сколько мест: ");
+                int seats = Convert.ToInt32(Console.ReadLine());
 
-                Bus bus = new Bus
-                {
-                    Model = model,
-                    Year = year,
-                    Fuel = fuel,
-                    Body = body,
-                    PassengerSeats = seats
-                };
-                park[count++] = bus;
+                Bus bus = new Bus();
+                bus.Model = model;
+                bus.Year = year;
+                bus.Fuel = fuel;
+                bus.Body = body;
+                bus.Seats = seats;
+
+                park.Add(bus);
             }
             else
             {
-                Console.WriteLine("Неизвестный тип транспорта.");
+                Console.WriteLine("Неизвестный тип транспорта");
             }
 
             Console.WriteLine("Транспорт добавлен.");
         }
 
-        static void ShowPark()
+        void ShowAll()
         {
-            if (count == 0)
+            if (park.Count == 0)
             {
-                Console.WriteLine("Автопарк пуст.");
+                Console.WriteLine("Список пуст.");
                 return;
             }
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < park.Count; i++)
             {
-                Console.WriteLine($"\n[{i}]");
-                park[i].PrintInfo();
-            }
-        }
+                Console.WriteLine();
+                Console.WriteLine("Транспорт №" + i);
+                var item = park[i];
 
-        static void EditTransport()
-        {
-            ShowPark();
-            Console.Write("Введите номер транспорта для редактирования: ");
-            if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < count)
-            {
-                AddTransportAtIndex(index);
-            }
-            else
-            {
-                Console.WriteLine("Неверный индекс.");
-            }
-        }
-
-        static void AddTransportAtIndex(int index)
-        {
-            Console.Write("Введите тип (car/bus): ");
-            string type = Console.ReadLine().ToLower();
-
-            Console.Write("Модель: ");
-            string model = Console.ReadLine();
-
-            Console.Write("Год выпуска: ");
-            int year = int.Parse(Console.ReadLine());
-
-            Console.Write("Топливо (Petrol, Diesel, Electric, Hybrid): ");
-            FuelType fuel = Enum.Parse<FuelType>(Console.ReadLine());
-
-            Console.Write("Кузов (Sedan, Hatchback, SUV, Minivan, Bus): ");
-            BodyType body = Enum.Parse<BodyType>(Console.ReadLine());
-
-            if (type == "car")
-            {
-                Console.Write("Количество дверей: ");
-                int doors = int.Parse(Console.ReadLine());
-
-                Car car = new Car
+                if (item is Car)
                 {
-                    Model = model,
-                    Year = year,
-                    Fuel = fuel,
-                    Body = body,
-                    NumberOfDoors = doors
-                };
-                park[index] = car;
-            }
-            else if (type == "bus")
-            {
-                Console.Write("Пассажирских мест: ");
-                int seats = int.Parse(Console.ReadLine());
-
-                Bus bus = new Bus
-                {
-                    Model = model,
-                    Year = year,
-                    Fuel = fuel,
-                    Body = body,
-                    PassengerSeats = seats
-                };
-                park[index] = bus;
-            }
-            else
-            {
-                Console.WriteLine("Неизвестный тип транспорта.");
-            }
-
-            Console.WriteLine("Транспорт обновлён.");
-        }
-
-        static void DeleteTransport()
-        {
-            ShowPark();
-            Console.Write("Введите номер транспорта для удаления: ");
-            if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < count)
-            {
-                for (int i = index; i < count - 1; i++)
-                {
-                    park[i] = park[i + 1];
+                    Car car = (Car)item;
+                    car.ShowInfo();
                 }
-                count--;
+                else if (item is Bus)
+                {
+                    Bus bus = (Bus)item;
+                    bus.ShowInfo();
+                }
+                else
+                {
+                    item.ShowInfo();
+                }
+            }
+        }
+
+        void EditTransport()
+        {
+            ShowAll();
+
+            Console.Write("Введите номер транспорта для редактирования: ");
+            int index = Convert.ToInt32(Console.ReadLine());
+
+            if (index >= 0 && index < park.Count)
+            {
+                park.RemoveAt(index);
+                Console.WriteLine("Введите новые данные для транспорта:");
+                AddTransport();
+            }
+            else
+            {
+                Console.WriteLine("Неверный номер.");
+            }
+        }
+
+        void DeleteTransport()
+        {
+            ShowAll();
+
+            Console.Write("Введите номер транспорта для удаления: ");
+            int index = Convert.ToInt32(Console.ReadLine());
+
+            if (index >= 0 && index < park.Count)
+            {
+                park.RemoveAt(index);
                 Console.WriteLine("Удалено.");
             }
             else
             {
-                Console.WriteLine("Неверный индекс.");
+                Console.WriteLine("Неверный номер.");
             }
+        }
+    }
+
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            AutoParkManager manager = new AutoParkManager();
+            manager.Run();
         }
     }
 }
