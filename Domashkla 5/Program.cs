@@ -16,7 +16,7 @@ namespace LibraryApp
             Year = year;
         }
 
-        public override string ToString()
+        public string ToString()
         {
             return "\"" + Title + "\" - " + Author + " (" + Year + ")";
         }
