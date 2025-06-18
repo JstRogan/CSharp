@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 namespace SimpleAutoPark
 {
     class Transport
@@ -22,18 +21,15 @@ namespace SimpleAutoPark
     class Car : Transport
     {
         public int Doors;
-
-        public new void ShowInfo()
+        public void ShowInfo()
         {
             base.ShowInfo();
             Console.WriteLine("Количество дверей: " + Doors);
         }
     }
-
     class Bus : Transport
     {
         public int Seats;
-
         public void ShowInfo()
         {
             base.ShowInfo();
