@@ -1,222 +1,148 @@
 using System;
 using System.Collections.Generic;
 
-namespace SimpleAutoPark
+namespace LibraryApp
 {
-    class Transport
+    class Book
     {
-        public string Model;
+        public string Title;
+        public string Author;
         public int Year;
-        public string Fuel;
-        public string Body;
 
-        public void ShowInfo()
+        public Book(string title, string author, int year)
         {
-            Console.WriteLine("Модель: " + Model);
-            Console.WriteLine("Год выпуска: " + Year);
-            Console.WriteLine("Тип топлива: " + Fuel);
-            Console.WriteLine("Тип кузова: " + Body);
-        }
-    }
-
-    class Car : Transport
-    {
-        public int Doors;
-
-        public new void ShowInfo()
-        {
-            base.ShowInfo();
-            Console.WriteLine("Количество дверей: " + Doors);
-        }
-    }
-
-    class Bus : Transport
-    {
-        public int Seats;
-
-        public void ShowInfo()
-        {
-            base.ShowInfo();
-            Console.WriteLine("Пассажирских мест: " + Seats);
-        }
-    }
-
-    class AutoParkManager
-    {
-        List<Transport> park = new List<Transport>();
-
-        public void Run()
-        {
-            bool work = true;
-
-            while (work)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Меню:");
-                Console.WriteLine("1 - Добавить транспорт");
-                Console.WriteLine("2 - Показать все");
-                Console.WriteLine("3 - Редактировать транспорт");
-                Console.WriteLine("4 - Удалить транспорт");
-                Console.WriteLine("0 - Выход");
-                Console.Write("Выбор: ");
-
-                string answer = Console.ReadLine();
-
-                if (answer == "1")
-                {
-                    AddTransport();
-                }
-                else if (answer == "2")
-                {
-                    ShowAll();
-                }
-                else if (answer == "3")
-                {
-                    EditTransport();
-                }
-                else if (answer == "4")
-                {
-                    DeleteTransport();
-                }
-                else if (answer == "0")
-                {
-                    work = false;
-                }
-                else
-                {
-                    Console.WriteLine("Неверный выбор");
-                }
-            }
+            Title = title;
+            Author = author;
+            Year = year;
         }
 
-        void AddTransport()
+        public override string ToString()
         {
-            Console.Write("Введите тип транспорта (car или bus): ");
-            string type = Console.ReadLine();
-
-            Console.Write("Введите модель: ");
-            string model = Console.ReadLine();
-
-            Console.Write("Введите год выпуска: ");
-            int year = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Введите тип топлива: ");
-            string fuel = Console.ReadLine();
-
-            Console.Write("Введите тип кузова: ");
-            string body = Console.ReadLine();
-
-            if (type == "car")
-            {
-                Console.Write("Сколько дверей: ");
-                int doors = Convert.ToInt32(Console.ReadLine());
-
-                Car car = new Car();
-                car.Model = model;
-                car.Year = year;
-                car.Fuel = fuel;
-                car.Body = body;
-                car.Doors = doors;
-
-                park.Add(car);
-            }
-            else if (type == "bus")
-            {
-                Console.Write("Сколько мест: ");
-                int seats = Convert.ToInt32(Console.ReadLine());
-
-                Bus bus = new Bus();
-                bus.Model = model;
-                bus.Year = year;
-                bus.Fuel = fuel;
-                bus.Body = body;
-                bus.Seats = seats;
-
-                park.Add(bus);
-            }
-            else
-            {
-                Console.WriteLine("Неизвестный тип транспорта");
-            }
-
-            Console.WriteLine("Транспорт добавлен.");
-        }
-
-        void ShowAll()
-        {
-            if (park.Count == 0)
-            {
-                Console.WriteLine("Список пуст.");
-                return;
-            }
-
-            for (int i = 0; i < park.Count; i++)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Транспорт №" + i);
-                var item = park[i];
-
-                if (item is Car)
-                {
-                    Car car = (Car)item;
-                    car.ShowInfo();
-                }
-                else if (item is Bus)
-                {
-                    Bus bus = (Bus)item;
-                    bus.ShowInfo();
-                }
-                else
-                {
-                    item.ShowInfo();
-                }
-            }
-        }
-
-        void EditTransport()
-        {
-            ShowAll();
-
-            Console.Write("Введите номер транспорта для редактирования: ");
-            int index = Convert.ToInt32(Console.ReadLine());
-
-            if (index >= 0 && index < park.Count)
-            {
-                park.RemoveAt(index);
-                Console.WriteLine("Введите новые данные для транспорта:");
-                AddTransport();
-            }
-            else
-            {
-                Console.WriteLine("Неверный номер.");
-            }
-        }
-
-        void DeleteTransport()
-        {
-            ShowAll();
-
-            Console.Write("Введите номер транспорта для удаления: ");
-            int index = Convert.ToInt32(Console.ReadLine());
-
-            if (index >= 0 && index < park.Count)
-            {
-                park.RemoveAt(index);
-                Console.WriteLine("Удалено.");
-            }
-            else
-            {
-                Console.WriteLine("Неверный номер.");
-            }
+            return "\"" + Title + "\" - " + Author + " (" + Year + ")";
         }
     }
 
     class Program
     {
-        public static void Main(string[] args)
+        static List<Book> library = new List<Book>();
+
+        static void Main(string[] args)
         {
-            AutoParkManager manager = new AutoParkManager();
-            manager.Run();
+            Console.WriteLine("Привет! Это мини-библиотека");
+
+            bool isRunning = true;
+
+            while (isRunning)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Меню:");
+                Console.WriteLine("1. Добавить книгу");
+                Console.WriteLine("2. Удалить книгу");
+                Console.WriteLine("3. Показать все книги");
+                Console.WriteLine("4. Выход");
+
+                Console.Write("Ваш выбор: ");
+                string action = Console.ReadLine();
+
+                if (action == "1")
+                {
+                    AddBook();
+                }
+                else if (action == "2")
+                {
+                    DeleteBook();
+                }
+                else if (action == "3")
+                {
+                    ShowBooks();
+                }
+                else if (action == "4")
+                {
+                    isRunning = false;
+                    Console.WriteLine("Выход из программы...");
+                }
+                else
+                {
+                    Console.WriteLine("Такого варианта нет. Попробуйте снова.");
+                }
+            }
+        }
+
+        static void AddBook()
+        {
+            Console.Write("Название книги: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Автор: ");
+            string writer = Console.ReadLine();
+
+            Console.Write("Год выпуска: ");
+            string yearText = Console.ReadLine();
+
+            int year;
+            if (int.TryParse(yearText, out year))
+            {
+                Book b = new Book(name, writer, year);
+                library.Add(b);
+                Console.WriteLine("Книга добавлена!");
+            }
+            else
+            {
+                Console.WriteLine("Год введён неправильно.");
+            }
+        }
+
+        static void DeleteBook()
+        {
+            if (library.Count == 0)
+            {
+                Console.WriteLine("Нет книг для удаления.");
+                return;
+            }
+
+            ShowBooks();
+
+            Console.Write("Введите номер книги, которую хотите удалить: ");
+            string indexText = Console.ReadLine();
+
+            int index;
+            if (int.TryParse(indexText, out index))
+            {
+                index = index - 1;
+
+                if (index >= 0 && index < library.Count)
+                {
+                    library.RemoveAt(index);
+                    Console.WriteLine("Книга удалена.");
+                }
+                else
+                {
+                    Console.WriteLine("Такой книги нет.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Введите число.");
+            }
+        }
+
+        static void ShowBooks()
+        {
+            if (library.Count == 0)
+            {
+                Console.WriteLine("Книг пока нет.");
+                return;
+            }
+
+            Console.WriteLine("Список книг:");
+
+            int num = 1;
+            foreach (var item in library)
+            {
+                string text = num.ToString() + ". " + item; // простое склеивание
+                Console.WriteLine(text);
+                num = num + 1;
+            }
         }
     }
 }
