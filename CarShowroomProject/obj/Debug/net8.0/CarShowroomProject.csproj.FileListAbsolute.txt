@@ -1,0 +1,15 @@
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\bin\Debug\net8.0\CarShowroomProject.exe
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\bin\Debug\net8.0\CarShowroomProject.deps.json
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\bin\Debug\net8.0\CarShowroomProject.runtimeconfig.json
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\bin\Debug\net8.0\CarShowroomProject.dll
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\bin\Debug\net8.0\CarShowroomProject.pdb
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.AssemblyInfoInputs.cache
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.AssemblyInfo.cs
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.csproj.CoreCompileInputs.cache
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.sourcelink.json
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.dll
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\refint\CarShowroomProject.dll
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.pdb
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\CarShowroomProject.genruntimeconfig.cache
+C:\Users\Rogan\Desktop\CSharp\CarShowroomProject\obj\Debug\net8.0\ref\CarShowroomProject.dll
