@@ -1,0 +1,15 @@
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\bin\Debug\net8.0\Domashka 2.exe
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\bin\Debug\net8.0\Domashka 2.deps.json
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\bin\Debug\net8.0\Domashka 2.runtimeconfig.json
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\bin\Debug\net8.0\Domashka 2.dll
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\bin\Debug\net8.0\Domashka 2.pdb
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.AssemblyInfoInputs.cache
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.AssemblyInfo.cs
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.csproj.CoreCompileInputs.cache
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.sourcelink.json
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.dll
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\refint\Domashka 2.dll
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.pdb
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\Domashka 2.genruntimeconfig.cache
+C:\Users\Rogan\Desktop\CSharp\Domashka 2\obj\Debug\net8.0\ref\Domashka 2.dll
